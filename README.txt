@@ -13,7 +13,7 @@ Instructions for Setup
 3. At the bottom with client.run("INSERTBOTTOKENHERE"), replace INSERTBOTTOKENHERE with your bot token.
 4. On the On Message
 >>> responses = [], Add quotations and put in a lyric sample of what a response you want the bot to respond too. (See the example in main.py)
-5. Open singtrigger.txt and make a list of words or phrases you want the bot to watch for and respond with Lyrics you inputted
+5. At if 'l' in message.content:, replace 'l' with a word or letter you want the bot to respond with the lyrics. Keep the ''
 6. Save Everything and run the bot.
 
 Optional Steps:
@@ -24,7 +24,7 @@ At client = commands.Bot(command_prefix = '!'), replace ! with the prefix you wa
 HOW TO USE/HOW DOES IT WORK.
 
 To have a bot sing in a text channel you want, simply do <prefix>singtrue in the channel you want and the bot will store your channel id
-and know to sing in that channel if a set word or phrase(s) are being said in that channel.
+and know to sing in that channel if it sees the word or letter you put in: if 'l' in message.content:
 
 To disable the bot from singing in the enabled text channel, use <prefix>singfalse
 

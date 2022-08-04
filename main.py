@@ -21,7 +21,7 @@ async def on_message(message):
     if message.author.bot:
         return
     if client.user.id != message.author.id:
-        if message.content in singtrigger:
+        if 'l' in message.content:
             if message.channel.id in client.sings_channel:
                 async with message.channel.typing():
                     await asyncio.sleep(2)
