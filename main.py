@@ -5,7 +5,7 @@ import json
 import asyncio
 import sys
 
-client = commands.Bot(command_prefix = '!')
+client = commands.Bot(command_prefix='!')
 client.remove_command("help")
 
 @client.event
@@ -20,8 +20,9 @@ async def on_message(message):
     member = message.author
     if message.author.bot:
         return
+    msg = message.content
     if client.user.id != message.author.id:
-        if 'l' in message.content:
+        if any(word in msg for word in singtrigger):
             if message.channel.id in client.sings_channel:
                 async with message.channel.typing():
                     await asyncio.sleep(2)
@@ -37,8 +38,8 @@ async def on_message(message):
 @client.command()
 async def help(ctx):
     embed = discord.Embed(title="BOT COMMANDS", description="Here is my Commands", color=(2621184))
-    embed.add_field(name="STANDARD COMMANDS", value=">help - This Message\n>ping - Checks my Ping\n>say - Make me say things\n>esay - Make me say things in a embed", inline=False)
-    embed.add_field(name="CONFIG", value=">singtrue - Have me sing christmas songs randomly in your current channel\n>singfalse - Make me no longer sing in your text channel", inline=False)
+    embed.add_field(name="STANDARD COMMANDS", value="!help - This Message\n!ping - Checks my Ping\n!say - Make me say things\n!esay - Make me say things in a embed", inline=False)
+    embed.add_field(name="CONFIG", value="!singtrue - Have me sing songs randomly in your current channel\n!singfalse - Make me no longer sing in your text channel", inline=False)
     embed.add_field(name="SOURCE CODE", value="https://github.com/BoomerangRosalina/DiscordSingsBot.py", inline=False)
     await ctx.send(embed=embed)
 
@@ -101,6 +102,8 @@ def write_json(data, filename):
 if "__main__" == __name__:
     with open("singtrigger.txt", "r") as f:
         singtrigger = f.read().splitlines()
+
+singtrigger = ["I", "night"]
 
 
 
